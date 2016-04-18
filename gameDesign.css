@@ -1,0 +1,41 @@
+body {
+  background-color: black;
+  position: fixed;
+}
+
+/* ship objects */
+#ship {
+  position:relative;
+  background-image: url('ship.png');
+  background-repeat: no-repeat;
+  height:100px;
+  width:200px;
+}
+
+#shipPositionDisplay {
+	position:absolute;
+	top:0px;
+	right:-1000px;
+	width:200px;
+	background-color: white;
+}
+
+#bullet {
+	opacity:0;
+	position:absolute;
+ 	background-color: yellow;
+	position:absolute;
+	height: 3px;
+	width: 15px;
+}
+
+/* enemy animations */
+
+.enemy1, .enemy2, .enemy3, .enemy4, .enemy5, .enemy6, .enemy7, .enemy8, .enemy9, .enemy10 {
+  position:relative;
+  left:1400px;
+  background-image: url('enemy1.png');
+  background-repeat: no-repeat;
+  height:100px;
+  width:100px;
+}
