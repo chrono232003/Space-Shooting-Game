@@ -1,59 +1,14 @@
 $(document).ready(function () {
 	//create sound effects
-	var explosionS = new Audio("explosion.mp3");
-	var laserS = new Audio("laser.mp3");
-//Background//
+	var explosionS = new Audio("audio/explosion.mp3");
+	var laserS = new Audio("audio/laser.mp3");
 
-    //create 20 small stars
-    for (var i = 1; i <= 20; i++) {
-        var className = "smallStar" + i;
-        $('.' + className).css({
-            "opacity": "0",
-        });
-        $('#background').append("<div class = " + className + "></div>");
-        Star(className, '2px');
-    }
+/**Background (star.js) **/
+//create 20 small stars
+createStars(20, 'smallStar', '2px');
 
-    //create 10 big stars
-    for (var i = 1; i <= 10; i++) {
-        var className = "bigStar" + i;
-        $('.' + className).css({
-            "opacity": "0",
-        });
-        $('#background').append("<div class = " + className + "></div>");
-        Star(className, '5px');
-    }
-
-
-    function Star(star, size) {
-        var zWindow = $(window).height();
-        var posy = Math.floor((Math.random() * zWindow) + 1);
-
-        $('.' + star).css({
-            "top": posy + "px",
-            "position": "absolute",
-            "opacity": "1",
-            "background-color": "white",
-            "height": size,
-            "width": size,
-        });
-        var speedCalc = 0;
-        if (size == "2px") {
-            speedCalc = 50000;
-        } else {
-            speedCalc = 10000;
-        }
-
-        var speed = Math.floor(Math.random() * speedCalc);
-        $('.' + star).animate({
-            "left": "-=1600px"
-        }, speed, function () {
-            $(this).css({
-                "left": "1500px",
-            });
-            Star(star, size);
-        });
-    };
+//create 10 big stars
+createStars(10, 'bigStar', '5px');
 
 //ship//
 
@@ -64,7 +19,7 @@ $(document).ready(function () {
         //set initial ship position variables
         var wHeight = $(window).height() - 100;
         var wWidth = $(window).width() - 200;
-		
+
         var shipPos = $("#ship").position();
         $("#shipPositionDisplay").text("height: " + wHeight + "width: " + wWidth + "vPostion: " + shipPos.top + " " + "hPostion: " + shipPos.left);
 ;
@@ -125,7 +80,7 @@ $(document).ready(function () {
 						complete: function() {
 							$("#bulletPositionDisplay").text("");
 						}
-							
+
 				});
 				break;
         }
@@ -174,15 +129,15 @@ $(document).ready(function () {
 
         // assign random operatior to the horizontal and vertical controls
 		function assignOperator() {
-            if (Math.random() > parseFloat(0.5)) { 
-				return "+="; 
-			} else { 
-				return "-="; 
+            if (Math.random() > parseFloat(0.5)) {
+				return "+=";
+			} else {
+				return "-=";
 			}
         }
         var posNegv = assignOperator();
         var posNegh = assignOperator();
-		
+
 		console.log("math: " + posNegv + " " + posNegh);
 
         //check and make sure next horizontal move will not go off of the screen
@@ -207,7 +162,7 @@ $(document).ready(function () {
         if (checkh) { hMove = posx; } else { hMove = "0"; }
         if (checkv) { vMove = posy; } else { vMove = "0"; }
 
-        //var speed = Math.floor(Math.random() * 5000);	
+        //var speed = Math.floor(Math.random() * 5000);
         $('.' + enemy).animate({
             "left": posNegh + "" + hMove + "px",
             "top": posNegv + "" + vMove + "px"
@@ -220,7 +175,7 @@ $(document).ready(function () {
 					        cEnemyLoc = [enemyPos.top,enemyPos.left];
 							bulletCoord = $("#bulletPositionDisplay").text().split(",");
 							console.log("coordenemy" + bulletCoord[0]);
-							
+
 							if (bulletCoord != null) {
 								if ((bulletCoord[0] <= cEnemyLoc[0] + 75) && (bulletCoord[0] >= cEnemyLoc[0])) {
 									if ((bulletCoord[1] <= cEnemyLoc[1] + 75) && (bulletCoord[1] >= cEnemyLoc[1])) {
@@ -235,7 +190,7 @@ $(document).ready(function () {
 											"width":"150px"
 										});
 										$('.' + enemy).stop();
-										setTimeout(function() {								
+										setTimeout(function() {
 										$('.' + enemy).remove();
 										}, 1000);
 										return false;
