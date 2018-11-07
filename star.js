@@ -23,10 +23,10 @@ function Star(star, size) {
 
     var speed = Math.floor(Math.random() * speedCalc);
     $('.' + star).animate({
-        "left": "-=1600px"
+        "left": "-=" + (window.innerWidth + 100) + "px"
     }, speed, function () {
         $(this).css({
-            "left": "1500px",
+            "left": window.innerWidth + "px",
         });
         Star(star, size);
     });
